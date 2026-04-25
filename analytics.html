@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TokenFlow — Protocol Analytics</title>
+  <link rel="stylesheet" href="design-system.css" />
+</head>
+<body>
+
+<!-- ===== SIDEBAR — no Protocols section, just Markets + Research ===== -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-mark">Pylon Partners</div>
+    <div class="logo-name">TokenFlow</div>
+    <div class="logo-sub">RWA Intelligence Terminal</div>
+  </div>
+
+  <div class="sidebar-section">Markets</div>
+  <a href="index.html" class="nav-item">
+    <span class="nav-dot" style="background:#4a7cf0"></span> RWA Overview
+  </a>
+  <a href="analytics.html" class="nav-item active">
+    <span class="nav-dot" style="background:#7c3aed"></span> Protocol Analytics
+  </a>
+  <a href="distribution.html" class="nav-item">
+    <span class="nav-dot" style="background:#0891b2"></span> Asset Distribution
+  </a>
+
+  <div class="sidebar-section">Research</div>
+  <a href="sports.html" class="nav-item">
+    <span class="nav-dot" style="background:#be123c"></span> Sports Tokenization
+  </a>
+
+  <div class="sidebar-footer">
+    Data: <a href="https://app.rwa.xyz" target="_blank">rwa.xyz</a> · DefiLlama · Messari<br/>
+    Last updated: Apr 25, 2026
+  </div>
+</nav>
+
+<!-- ===== MAIN ===== -->
+<main class="main">
+
+  <div class="page-header">
+    <div>
+      <div class="page-title">Protocol Analytics</div>
+      <div class="page-subtitle">Deep-dive metrics: Ondo, Plume, Maple, Centrifuge — including token valuation</div>
+    </div>
+    <div class="data-timestamp">Data as of Apr 25, 2026</div>
+  </div>
+
+  <!-- Within-page jump bar — replaces sidebar Protocols section -->
+  <div class="jump-bar">
+    <a href="#ondo"  class="jump-link"><span style="width:5px;height:5px;border-radius:50%;background:var(--ondo);display:inline-block;flex-shrink:0"></span> Ondo Finance</a>
+    <a href="#plume" class="jump-link"><span style="width:5px;height:5px;border-radius:50%;background:var(--plume);display:inline-block;flex-shrink:0"></span> Plume Network</a>
+    <a href="#maple" class="jump-link"><span style="width:5px;height:5px;border-radius:50%;background:var(--maple);display:inline-block;flex-shrink:0"></span> Maple Finance</a>
+    <a href="#cfg"   class="jump-link"><span style="width:5px;height:5px;border-radius:50%;background:var(--cfg);display:inline-block;flex-shrink:0"></span> Centrifuge</a>
+  </div>
+
+  <div class="content">
+
+    <!-- ===== ONDO ===== -->
+    <div class="protocol-section" id="ondo">
+      <div class="protocol-section-header ondo">
+        <span class="protocol-dot" style="background:var(--ondo);width:10px;height:10px;border-radius:50%"></span>
+        <div>
+          <div class="ps-name">Ondo Finance</div>
+          <div class="ps-category">Tokenized US Treasuries and Yield-Bearing Assets · ONDO</div>
+        </div>
+        <div class="ps-tvl">
+          <div class="ps-tvl-label">TVL (Jan 2026)</div>
+          <div class="ps-tvl-value" style="color:var(--ondo)">$2.50B</div>
+        </div>
+        <span class="badge badge-green">Live</span>
+      </div>
+      <div class="protocol-body">
+
+        <!-- Operational metrics -->
+        <div class="protocol-metrics-strip">
+          <div class="strip-metric">
+            <div class="strip-label">TVL (Jan 2026)</div>
+            <div class="strip-value">$2.52B</div>
+            <div class="strip-sub">+404% YoY</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">OUSG TVL</div>
+            <div class="strip-value">$692M</div>
+            <div class="strip-sub">Short-term T-Bills · 3.49% APY</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">USDY TVL</div>
+            <div class="strip-value">$1.0B+</div>
+            <div class="strip-sub">Permissionless · 9 chains</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">Monthly Growth</div>
+            <div class="strip-value green">+31%</div>
+            <div class="strip-sub">Jan 2026 vs Dec 2025</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">Chains</div>
+            <div class="strip-value">9</div>
+            <div class="strip-sub">ETH, SOL, SUI, Aptos +5</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">Mgmt Fee</div>
+            <div class="strip-value">15bp</div>
+            <div class="strip-sub">On AUM</div>
+          </div>
+        </div>
+
+        <!-- Valuation block — new -->
+        <div class="valuation-strip">
+          <div class="val-metric">
+            <div class="val-label">Token Price<sup class="est-marker">e</sup></div>
+            <div class="val-value">~$0.26</div>
+            <div class="val-sub">ONDO</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">FDV<sup class="est-marker">e</sup></div>
+            <div class="val-value">~$2.6B</div>
+            <div class="val-sub">~10B total supply</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">TVL / FDV<sup class="est-marker">e</sup></div>
+            <div class="val-value">0.96×</div>
+            <div class="val-sub">Near parity — rich vs peers</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">ARR<sup class="est-marker">e</sup></div>
+            <div class="val-value"><span class="est">~$30M</span></div>
+            <div class="val-sub">15bp on $2.5B AUM</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">FDV / ARR<sup class="est-marker">e</sup></div>
+            <div class="val-value"><span class="est">~87×</span></div>
+            <div class="val-sub">Expensive on revenue basis</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">Key Backer</div>
+            <div class="val-value" style="font-size:11px">Founders Fund</div>
+            <div class="val-sub">Pantera, Blackrock</div>
+          </div>
+        </div>
+
+        <!-- Detail panels -->
+        <div class="protocol-detail">
+          <div class="detail-panel">
+            <div class="detail-title">Product Suite</div>
+            <table class="product-table">
+              <thead>
+                <tr><th>Product</th><th>TVL</th><th>APY</th><th>Access</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>USDY</strong></td>
+                  <td class="green">$1.0B+</td>
+                  <td>~4.5%</td>
+                  <td><span class="badge badge-green">Permissionless</span></td>
+                </tr>
+                <tr>
+                  <td><strong>OUSG</strong></td>
+                  <td>$692M</td>
+                  <td>3.49%</td>
+                  <td><span class="badge badge-blue">Accredited</span></td>
+                </tr>
+                <tr>
+                  <td><strong>OMMF</strong></td>
+                  <td class="dimmer"><span class="est">Growing</span></td>
+                  <td>~4.8%</td>
+                  <td><span class="badge badge-blue">Inst. only</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Ondo Global Mkts</strong></td>
+                  <td class="dimmer"><span class="est">Pipeline</span></td>
+                  <td>—</td>
+                  <td><span class="badge badge-amber">Launching</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="detail-panel">
+            <div class="detail-title">Key Facts</div>
+            <div class="kv-list">
+              <div class="kv-row"><span class="kv-key">Market position</span><span class="kv-val">#1 tokenized T-Bills globally</span></div>
+              <div class="kv-row"><span class="kv-key">USDY chains</span><span class="kv-val">ETH, SOL, SUI, Aptos, Mantle, Injective, Noble, Arbitrum, XDC</span></div>
+              <div class="kv-row"><span class="kv-key">Custody</span><span class="kv-val">Morgan Stanley / regulated custodians</span></div>
+              <div class="kv-row"><span class="kv-key">Regulatory status</span><span class="kv-val">Reg D (OUSG), Reg S (USDY international)</span></div>
+              <div class="kv-row"><span class="kv-key">Key risk</span><span class="kv-val red">Rate compression as Fed cuts reduce T-bill yields</span></div>
+              <div class="kv-row"><span class="kv-key">Competitor risk</span><span class="kv-val red">Blackrock BUIDL + Franklin BENJI have superior institutional distribution</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="protocol-detail" style="border-top:1px solid var(--border-subtle)">
+          <div class="detail-panel">
+            <div class="detail-title">TVL Growth (Quarterly)</div>
+            <div class="growth-chart">
+              <div class="growth-bar-row">
+                <div class="growth-qtr">Q1 '25</div>
+                <div class="growth-track"><div class="growth-fill" style="width:20%;background:var(--ondo)"><span class="est">~$500M</span></div></div>
+                <div class="growth-val dimmer"><span class="est">$500M</span></div>
+              </div>
+              <div class="growth-bar-row">
+                <div class="growth-qtr">Q2 '25</div>
+                <div class="growth-track"><div class="growth-fill" style="width:37%;background:var(--ondo)"><span class="est">~$950M</span></div></div>
+                <div class="growth-val dimmer"><span class="est">$950M</span></div>
+              </div>
+              <div class="growth-bar-row">
+                <div class="growth-qtr">Q3 '25</div>
+                <div class="growth-track"><div class="growth-fill" style="width:55%;background:var(--ondo)"><span class="est">~$1.4B</span></div></div>
+                <div class="growth-val dimmer"><span class="est">$1.4B</span></div>
+              </div>
+              <div class="growth-bar-row">
+                <div class="growth-qtr">Q4 '25</div>
+                <div class="growth-track"><div class="growth-fill" style="width:75%;background:var(--ondo)"><span class="est">~$1.9B</span></div></div>
+                <div class="growth-val dimmer"><span class="est">$1.9B</span></div>
+              </div>
+              <div class="growth-bar-row">
+                <div class="growth-qtr">Jan '26</div>
+                <div class="growth-track"><div class="growth-fill" style="width:100%;background:var(--ondo)">$2.52B (reported)</div></div>
+                <div class="growth-val green">$2.52B</div>
+              </div>
+            </div>
+            <div style="font-size:9px;color:var(--text-tertiary);margin-top:8px;font-style:italic">Quarterly figures estimated; Jan 2026 figure from rwa.xyz/Messari</div>
+          </div>
+          <div class="detail-panel">
+            <div class="detail-title">Thesis and Risks</div>
+            <div class="detail-body">
+              Ondo is the structurally dominant play on tokenized US Treasuries. USDY's permissionless design (vs. OUSG's accredited-only access) materially expands the addressable market, and the 9-chain deployment captures yield demand wherever on-chain liquidity concentrates.<br/><br/>
+              <strong>Bull:</strong> Tokenized T-bills become DeFi's reserve asset; Ondo's compliance moat and first-mover brand sustain 30%+ market share as institutional flows accelerate.<br/><br/>
+              <strong>Bear:</strong> At 0.96× TVL/FDV, the market is pricing in near-zero growth premium. BlackRock BUIDL and Franklin BENJI have institutional distribution Ondo lacks. Rate cuts reduce the product yield and the thesis simultaneously. FDV/ARR of ~87× requires significant revenue growth to justify.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PLUME ===== -->
+    <div class="protocol-section" id="plume">
+      <div class="protocol-section-header plume">
+        <span class="protocol-dot" style="background:var(--plume);width:10px;height:10px;border-radius:50%"></span>
+        <div>
+          <div class="ps-name">Plume Network</div>
+          <div class="ps-category">EVM-Compatible RWA-Native L2 · PLUME</div>
+        </div>
+        <div class="ps-tvl">
+          <div class="ps-tvl-label">TVL (Feb 2026)</div>
+          <div class="ps-tvl-value" style="color:var(--plume)">$645M</div>
+        </div>
+        <span class="badge badge-green">Mainnet</span>
+      </div>
+      <div class="protocol-body">
+
+        <div class="protocol-metrics-strip">
+          <div class="strip-metric">
+            <div class="strip-label">TVL (Feb 2026)</div>
+            <div class="strip-value">$645M</div>
+            <div class="strip-sub">RWA assets on-chain</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">RWA Holders</div>
+            <div class="strip-value">280K+</div>
+            <div class="strip-sub">Largest of any RWA chain<sup class="est-marker">3</sup></div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">On-Chain Txns</div>
+            <div class="strip-value">100M+</div>
+            <div class="strip-sub">Since mainnet launch</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">Projects Building</div>
+            <div class="strip-value">180+</div>
+            <div class="strip-sub">EVM ecosystem</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">DeFi Deployed</div>
+            <div class="strip-value">$200M</div>
+            <div class="strip-sub">Morpho · RWA-backed</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">Revenue</div>
+            <div class="strip-value dimmer">Pre-rev.</div>
+            <div class="strip-sub">Early stage</div>
+          </div>
+        </div>
+
+        <!-- Valuation block -->
+        <div class="valuation-strip">
+          <div class="val-metric">
+            <div class="val-label">Token Price<sup class="est-marker">e</sup></div>
+            <div class="val-value">~$0.10</div>
+            <div class="val-sub">PLUME</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">FDV<sup class="est-marker">e</sup></div>
+            <div class="val-value">~$1.0B</div>
+            <div class="val-sub">~10B total supply</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">TVL / FDV<sup class="est-marker">e</sup></div>
+            <div class="val-value">0.65×</div>
+            <div class="val-sub">Paying 1.5× per TVL dollar</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">ARR</div>
+            <div class="val-value dimmer">—</div>
+            <div class="val-sub">Pre-revenue</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">FDV / ARR</div>
+            <div class="val-value dimmer">N/A</div>
+            <div class="val-sub">No revenue yet</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">Key Backer</div>
+            <div class="val-value" style="font-size:11px">Haun Ventures</div>
+            <div class="val-sub">Galaxy, Superscrypt</div>
+          </div>
+        </div>
+
+        <div class="protocol-detail">
+          <div class="detail-panel">
+            <div class="detail-title">Key Partnerships and Deployments</div>
+            <div class="kv-list">
+              <div class="kv-row"><span class="kv-key">Securitize (BlackRock)</span><span class="kv-val">Nest vaults · $100M target</span></div>
+              <div class="kv-row"><span class="kv-key">ADGM License</span><span class="kv-val">Abu Dhabi regulatory approval</span></div>
+              <div class="kv-row"><span class="kv-key">KRW1 Stablecoin</span><span class="kv-val">Korean institutional access</span></div>
+              <div class="kv-row"><span class="kv-key">Morpho</span><span class="kv-val">$200M RWA-backed DeFi deployed</span></div>
+              <div class="kv-row"><span class="kv-key">Centrifuge V3</span><span class="kv-val">Deployed on Plume mainnet</span></div>
+              <div class="kv-row"><span class="kv-key">Holder stat caveat</span><span class="kv-val amber">280K "holders" — definition includes airdrop and testnet wallets; verify independently</span></div>
+            </div>
+          </div>
+          <div class="detail-panel">
+            <div class="detail-title">Thesis and Risks</div>
+            <div class="detail-body">
+              Plume's differentiation is compliance infrastructure as a native chain feature rather than a DeFi add-on. ADGM licensing, KYC rails, and Securitize integration allow regulated asset managers to deploy on a purpose-built settlement layer without building their own compliance stack.<br/><br/>
+              <strong>Bull:</strong> Becomes the regulated-asset settlement layer — a NYSE equivalent for on-chain assets — where the moat is not technology but the accumulated regulatory approvals and institutional relationships.<br/><br/>
+              <strong>Bear:</strong> $645M TVL across 180+ projects means liquidity is highly fragmented. At 0.65× TVL/FDV the market is pricing in substantial future growth that requires TVL to grow 5–10× to justify the valuation. Pre-revenue at a $1B FDV is a high-stakes bet on the infrastructure thesis.
+            </div>
+          </div>
+        </div>
+
+        <div class="protocol-detail" style="border-top:1px solid var(--border-subtle)">
+          <div class="detail-panel">
+            <div class="detail-title">Chain and Regulatory Footprint</div>
+            <div class="chain-list" style="margin-top:6px">
+              <span class="chain-tag">Plume Mainnet (L2)</span>
+              <span class="chain-tag">EVM-compatible</span>
+              <span class="chain-tag">ETH bridged</span>
+              <span class="chain-tag">Morpho DeFi layer</span>
+              <span class="chain-tag">ADGM licensed</span>
+              <span class="chain-tag">KRW1 stablecoin</span>
+            </div>
+          </div>
+          <div class="detail-panel">
+            <div class="detail-title">Risk Factors</div>
+            <div class="risk-grid" style="margin-top:6px">
+              <div class="risk-item"><span class="risk-dot" style="background:var(--amber)"></span><span class="risk-text">Fragmented liquidity across 180+ projects</span></div>
+              <div class="risk-item"><span class="risk-dot" style="background:var(--red-bright)"></span><span class="risk-text">Pre-revenue at $1B FDV</span></div>
+              <div class="risk-item"><span class="risk-dot" style="background:var(--red-bright)"></span><span class="risk-text">ETH L2 competition (Arbitrum, Base)</span></div>
+              <div class="risk-item"><span class="risk-dot" style="background:var(--green-bright)"></span><span class="risk-text">ADGM + KRW regulatory moat</span></div>
+              <div class="risk-item"><span class="risk-dot" style="background:var(--green-bright)"></span><span class="risk-text">BlackRock/Securitize pipeline</span></div>
+              <div class="risk-item"><span class="risk-dot" style="background:var(--amber)"></span><span class="risk-text">Holder count methodology unverified</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MAPLE ===== -->
+    <div class="protocol-section" id="maple">
+      <div class="protocol-section-header maple">
+        <span class="protocol-dot" style="background:var(--maple);width:10px;height:10px;border-radius:50%"></span>
+        <div>
+          <div class="ps-name">Maple Finance</div>
+          <div class="ps-category">Institutional On-Chain Credit and Lending · SYRUP</div>
+        </div>
+        <div class="ps-tvl">
+          <div class="ps-tvl-label">AUM (Dec 2025)</div>
+          <div class="ps-tvl-value" style="color:var(--maple)">$4.00B</div>
+        </div>
+        <span class="badge badge-green">Live</span>
+      </div>
+      <div class="protocol-body">
+
+        <div class="protocol-metrics-strip">
+          <div class="strip-metric">
+            <div class="strip-label">Total AUM</div>
+            <div class="strip-value">$4.00B</div>
+            <div class="strip-sub">Largest on-chain credit</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">Active Loans (TVL)</div>
+            <div class="strip-value">$2.4B</div>
+            <div class="strip-sub">+8.4% MoM · Jan 2026</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">ARR Run-Rate</div>
+            <div class="strip-value green">~$25M</div>
+            <div class="strip-sub">Q4 2025 annualized</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">syrupUSDC Vol.</div>
+            <div class="strip-value">$4.98B</div>
+            <div class="strip-sub">Transfer vol. · 2× in Jan '26</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">SYRUP Buyback</div>
+            <div class="strip-value">25%</div>
+            <div class="strip-sub">Of protocol rev. off open mkt</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">Chains</div>
+            <div class="strip-value">4</div>
+            <div class="strip-sub">ETH, Base, SOL, Avalanche</div>
+          </div>
+        </div>
+
+        <!-- Valuation block -->
+        <div class="valuation-strip">
+          <div class="val-metric">
+            <div class="val-label">Token Price<sup class="est-marker">e</sup></div>
+            <div class="val-value">~$0.15</div>
+            <div class="val-sub">SYRUP</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">FDV<sup class="est-marker">e</sup></div>
+            <div class="val-value">~$165M</div>
+            <div class="val-sub">~1.1B total supply</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">AUM / FDV<sup class="est-marker">e</sup></div>
+            <div class="val-value green">14.5×</div>
+            <div class="val-sub">Significant discount to AUM</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">TVL / FDV<sup class="est-marker">e</sup></div>
+            <div class="val-value green">14.5×</div>
+            <div class="val-sub">Active loans basis</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">FDV / ARR<sup class="est-marker">e</sup></div>
+            <div class="val-value green">~6.6×</div>
+            <div class="val-sub">Cheapest in coverage set</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">2026E ARR Target</div>
+            <div class="val-value amber"><span class="est">$100M</span></div>
+            <div class="val-sub">Management guidance — not forecast</div>
+          </div>
+        </div>
+
+        <div class="protocol-detail">
+          <div class="detail-panel">
+            <div class="detail-title">Product Suite</div>
+            <table class="product-table">
+              <thead>
+                <tr><th>Product</th><th>AUM</th><th>Yield</th><th>Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>syrupUSDC</strong></td>
+                  <td class="green">~$1.7B</td>
+                  <td>8–10%</td>
+                  <td>70% of active loans</td>
+                </tr>
+                <tr>
+                  <td><strong>Inst. Lending Pools</strong></td>
+                  <td>~$700M</td>
+                  <td>Variable</td>
+                  <td>KYC'd borrowers only</td>
+                </tr>
+                <tr>
+                  <td><strong>Cash Management</strong></td>
+                  <td class="dimmer"><span class="est">Growing</span></td>
+                  <td>~5%</td>
+                  <td>T-bill backed</td>
+                </tr>
+                <tr>
+                  <td><strong>Maple Direct</strong></td>
+                  <td class="dimmer"><span class="est">~$600M</span></td>
+                  <td>Custom</td>
+                  <td>OTC institutional</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="detail-panel">
+            <div class="detail-title">Key Facts</div>
+            <div class="kv-list">
+              <div class="kv-row"><span class="kv-key">AUM growth (12mo)</span><span class="kv-val green">+10× (from ~$300M)</span></div>
+              <div class="kv-row"><span class="kv-key">Borrower profile</span><span class="kv-val">Institutions, market makers, fintechs</span></div>
+              <div class="kv-row"><span class="kv-key">Buyback mechanic</span><span class="kv-val">25% of protocol revenue buys SYRUP off open market</span></div>
+              <div class="kv-row"><span class="kv-key">Historical default</span><span class="kv-val red">Orthogonal Trading (2022) — $36M loss</span></div>
+              <div class="kv-row"><span class="kv-key">Post-2022 rebuild</span><span class="kv-val green">Full risk framework overhaul; underwriting criteria tightened</span></div>
+              <div class="kv-row"><span class="kv-key">Key risk</span><span class="kv-val red">Credit default in macro contraction; Orthogonal-style event destroys AUM base</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="protocol-detail" style="border-top:1px solid var(--border-subtle)">
+          <div class="detail-panel">
+            <div class="detail-title">Protocol Revenue — Actuals vs. Forward Guidance</div>
+            <div class="growth-chart">
+              <div class="growth-bar-row">
+                <div class="growth-qtr">2022</div>
+                <div class="growth-track"><div class="growth-fill" style="width:5%;background:var(--maple)">$1M</div></div>
+                <div class="growth-val red">~$1M</div>
+              </div>
+              <div class="growth-bar-row">
+                <div class="growth-qtr">2023</div>
+                <div class="growth-track"><div class="growth-fill" style="width:8%;background:var(--maple)">$2M</div></div>
+                <div class="growth-val">~$2M</div>
+              </div>
+              <div class="growth-bar-row">
+                <div class="growth-qtr">2024</div>
+                <div class="growth-track"><div class="growth-fill" style="width:28%;background:var(--maple)">$7M</div></div>
+                <div class="growth-val">~$7M</div>
+              </div>
+              <div class="growth-bar-row">
+                <div class="growth-qtr">2025</div>
+                <div class="growth-track"><div class="growth-fill" style="width:60%;background:var(--maple)">$15M (reported)</div></div>
+                <div class="growth-val">$15M</div>
+              </div>
+              <!-- 2026E uses forecast bar style — visually distinct from actuals -->
+              <div class="growth-bar-row">
+                <div class="growth-qtr">2026E</div>
+                <div class="growth-track">
+                  <div class="bar-fill-forecast" style="width:100%;background:var(--maple)">$100M — mgmt. guidance only</div>
+                </div>
+                <div class="growth-val amber"><span class="est">$100M</span></div>
+              </div>
+            </div>
+            <div style="font-size:9px;color:var(--text-tertiary);margin-top:8px;font-style:italic">Striped bar = forward guidance, not forecast. Actuals through 2025 from protocol disclosures.</div>
+          </div>
+          <div class="detail-panel">
+            <div class="detail-title">Thesis and Risks</div>
+            <div class="detail-body">
+              Maple is the only protocol in this coverage set with meaningful, auditable revenue at a reasonable valuation multiple. The syrupUSDC flywheel — yield-bearing stablecoin with DeFi composability — solves the distribution problem: institutional yield, permissionless access. The 25% revenue buyback creates a direct earnings-to-token link that most DeFi protocols lack entirely.<br/><br/>
+              At ~6.6× FDV/ARR it is the cheapest protocol in the set on a revenue basis. The risk is that this cheap multiple reflects the Orthogonal shadow — institutional allocators who lost capital in 2022 have long memories, and a second default event would be existential.<br/><br/>
+              <strong>Bull:</strong> $100M ARR by end-2026 with SYRUP buybacks at scale — at a 15–20× multiple that implies a $1.5–2.0B FDV, roughly 10× from current levels.<br/><br/>
+              <strong>Bear:</strong> Credit contraction or default destroys AUM faster than it was built. Management's $100M ARR target requires 4× revenue growth in 12 months from a base that took years to reach.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CENTRIFUGE ===== -->
+    <div class="protocol-section" id="cfg">
+      <div class="protocol-section-header cfg">
+        <span class="protocol-dot" style="background:var(--cfg);width:10px;height:10px;border-radius:50%"></span>
+        <div>
+          <div class="ps-name">Centrifuge</div>
+          <div class="ps-category">On-Chain Asset Management Infrastructure · CFG</div>
+        </div>
+        <div class="ps-tvl">
+          <div class="ps-tvl-label">TVL (Apr 2026)</div>
+          <div class="ps-tvl-value" style="color:var(--cfg)">$1.60B</div>
+        </div>
+        <span class="badge badge-green">V3 Live</span>
+      </div>
+      <div class="protocol-body">
+
+        <div class="protocol-metrics-strip">
+          <div class="strip-metric">
+            <div class="strip-label">TVL (Apr 2026)</div>
+            <div class="strip-value">$1.60B</div>
+            <div class="strip-sub">Up from $1.2B · Base expansion</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">Janus Henderson CLO</div>
+            <div class="strip-value">$653M+</div>
+            <div class="strip-sub">AAA CLO on-chain</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">JTRSY Fund</div>
+            <div class="strip-value">$400M</div>
+            <div class="strip-sub">Treasury fund · Grove alloc.</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">ARR (2026E)</div>
+            <div class="strip-value green"><span class="est">~$15M</span></div>
+            <div class="strip-sub">Advisory Group est.</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">Version</div>
+            <div class="strip-value">V3</div>
+            <div class="strip-sub">EVM-native · 2025 upgrade</div>
+          </div>
+          <div class="strip-metric">
+            <div class="strip-label">Chains</div>
+            <div class="strip-value">8</div>
+            <div class="strip-sub">ETH, Base, ARB, SOL, Plume +3</div>
+          </div>
+        </div>
+
+        <!-- Valuation block -->
+        <div class="valuation-strip">
+          <div class="val-metric">
+            <div class="val-label">Token Price<sup class="est-marker">e</sup></div>
+            <div class="val-value">~$0.18</div>
+            <div class="val-sub">CFG · near support</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">FDV<sup class="est-marker">e</sup></div>
+            <div class="val-value">~$76M</div>
+            <div class="val-sub">~425M total supply</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">TVL / FDV<sup class="est-marker">e</sup></div>
+            <div class="val-value green">21.1×</div>
+            <div class="val-sub">Highest in coverage set</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">ARR<sup class="est-marker">e</sup></div>
+            <div class="val-value"><span class="est">~$15M</span></div>
+            <div class="val-sub">2026 estimate</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">FDV / ARR<sup class="est-marker">e</sup></div>
+            <div class="val-value green">~5.1×</div>
+            <div class="val-sub">Cheapest on revenue basis</div>
+          </div>
+          <div class="val-metric">
+            <div class="val-label">Key risk</div>
+            <div class="val-value red" style="font-size:11px">Token vs. TVL</div>
+            <div class="val-sub">Token underperforms TVL growth</div>
+          </div>
+        </div>
+
+        <div class="protocol-detail">
+          <div class="detail-panel">
+            <div class="detail-title">Institutional Products on Centrifuge V3</div>
+            <table class="product-table">
+              <thead>
+                <tr><th>Product</th><th>TVL</th><th>Issuer</th><th>Type</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>AAA CLO Strategy</strong></td>
+                  <td class="green">$653M+</td>
+                  <td>Janus Henderson</td>
+                  <td><span class="badge badge-blue">CLO</span></td>
+                </tr>
+                <tr>
+                  <td><strong>JTRSY Treasury</strong></td>
+                  <td class="green">$400M</td>
+                  <td>Anemoy / Grove</td>
+                  <td><span class="badge badge-blue">T-Bill</span></td>
+                </tr>
+                <tr>
+                  <td><strong>SPXA S&amp;P 500</strong></td>
+                  <td class="dimmer"><span class="est">Growing</span></td>
+                  <td>Centrifuge Labs</td>
+                  <td><span class="badge badge-amber">Equity</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Private Credit</strong></td>
+                  <td class="dimmer"><span class="est">~$500M</span></td>
+                  <td>Multiple</td>
+                  <td><span class="badge badge-amber">Credit</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="detail-panel">
+            <div class="detail-title">Key Facts</div>
+            <div class="kv-list">
+              <div class="kv-row"><span class="kv-key">Founded</span><span class="kv-val">2017 — oldest active RWA protocol</span></div>
+              <div class="kv-row"><span class="kv-key">V3 upgrade</span><span class="kv-val">2025 — Polkadot parachain to EVM-native multichain</span></div>
+              <div class="kv-row"><span class="kv-key">Chains (V3)</span><span class="kv-val">ETH, Base, Arbitrum, Avalanche, Plume, Solana, Stellar, BNB</span></div>
+              <div class="kv-row"><span class="kv-key">Janus Henderson</span><span class="kv-val">First top-20 global asset manager to issue tokenized AAA CLOs on-chain</span></div>
+              <div class="kv-row"><span class="kv-key">TVL/FDV thesis</span><span class="kv-val green">21× TVL/FDV is the highest in the set — market not pricing the TVL base</span></div>
+              <div class="kv-row"><span class="kv-key">Key risk</span><span class="kv-val red">CFG token has historically underperformed TVL growth; unclear revenue accrual to token</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="protocol-detail" style="border-top:1px solid var(--border-subtle)">
+          <div class="detail-panel">
+            <div class="detail-title">Chain Deployment (V3)</div>
+            <div class="chain-list" style="margin-top:6px">
+              <span class="chain-tag">Ethereum</span>
+              <span class="chain-tag">Base</span>
+              <span class="chain-tag">Arbitrum</span>
+              <span class="chain-tag">Avalanche</span>
+              <span class="chain-tag">Plume</span>
+              <span class="chain-tag">Solana</span>
+              <span class="chain-tag">Stellar</span>
+              <span class="chain-tag">BNB Chain</span>
+            </div>
+          </div>
+          <div class="detail-panel">
+            <div class="detail-title">Thesis and Risks</div>
+            <div class="detail-body">
+              Centrifuge is the infrastructure play in the coverage set — it does not compete for AUM directly but provides the compliance, structuring, and distribution rails for TradFi asset managers to issue on-chain. The Janus Henderson CLO is the most significant institutional validation in the space: a top-20 global AM using a blockchain protocol as primary distribution infrastructure.<br/><br/>
+              At 21× TVL/FDV and ~5× FDV/ARR, CFG is statistically the cheapest protocol in the set. The question is whether the token accrues value in proportion to TVL growth — historically it has not.<br/><br/>
+              <strong>Bull:</strong> Becomes the DTCC of on-chain assets — a utility layer whose revenue scales with total tokenized AUM. If global RWA TVL reaches $100B by end-2026 as Centrifuge Labs projects, even a 1% market share implies $1B+ AUM on CFG rails.<br/><br/>
+              <strong>Bear:</strong> $15M ARR on $1.6B TVL is a thin take-rate. Competing infrastructure (Securitize, Tokenized Asset Coalition) can replicate rails without a native token, potentially removing the economic rationale for CFG entirely.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <div class="footnote-bar">
+    <span class="fn">e</span> Estimated — not independently audited. Token prices, FDV, and supply figures approximate as of Apr 2026; verify on CoinGecko or CoinMarketCap before transacting.<br/>
+    <span class="fn">3</span> Plume's "280K RWA holders" figure is self-reported. Definition of "holder" (minimum balance, exclusion of airdrop/testnet wallets) not independently verified.<br/>
+    Quarterly TVL figures for Ondo (Q1–Q4 2025) are interpolated estimates, not protocol-reported data. Jan 2026 figure from rwa.xyz and Messari.<br/>
+    Sources:
+    <a href="https://app.rwa.xyz" target="_blank">rwa.xyz</a>
+    <a href="https://defillama.com" target="_blank">DefiLlama</a>
+    <a href="https://messari.io" target="_blank">Messari</a>
+    <a href="https://centrifuge.io/blog" target="_blank">Centrifuge Blog</a>
+    <a href="https://maple.finance" target="_blank">Maple Finance</a>
+  </div>
+
+</main>
+</body>
+</html>

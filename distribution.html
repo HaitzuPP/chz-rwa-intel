@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TokenFlow — Asset Distribution</title>
+  <link rel="stylesheet" href="design-system.css" />
+  <style>
+    /* ====== Distribution page components ====== */
+    .dist-protocol { margin-bottom: 32px; scroll-margin-top: 16px; }
+
+    .dist-bar-wrap {
+      border: 1px solid var(--border-strong);
+      border-top: none;
+      padding: 18px 20px;
+      background: var(--bg-card);
+    }
+
+    .dist-bar-title {
+      font-size: 9px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-tertiary);
+      margin-bottom: 10px;
+    }
+
+    /* Stacked horizontal bar */
+    .dist-stacked-bar {
+      display: flex;
+      height: 38px;
+      width: 100%;
+      overflow: hidden;
+      gap: 1px;
+      background: var(--border-subtle);
+    }
+
+    .dist-segment {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
+      color: rgba(255,255,255,0.85);
+      white-space: nowrap;
+      overflow: hidden;
+      padding: 0 6px;
+      flex-shrink: 0;
+    }
+
+    /* Non-RWA segment — hatched overlay to visually flag */
+    .dist-segment-nonrwa {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
+      color: rgba(255,255,255,0.6);
+      white-space: nowrap;
+      overflow: hidden;
+      padding: 0 6px;
+      flex-shrink: 0;
+      background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 4px,
+        rgba(0,0,0,0.25) 4px,
+        rgba(0,0,0,0.25) 6px
+      );
+    }
+
+    /* Legend grid */
+    .dist-legend {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      border: 1px solid var(--border-subtle);
+      border-top: none;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .dist-legend-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 14px;
+      border-right: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    /* Non-RWA legend row — dimmed */
+    .dist-legend-item.nonrwa {
+      background: rgba(220,38,38,0.04);
+      border-left: 2px solid var(--red);
+    }
+
+    .dist-legend-swatch {
+      width: 10px;
+      height: 10px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .dist-legend-name {
+      font-size: 11px;
+      color: var(--text-secondary);
+      flex: 1;
+      min-width: 0;
+      line-height: 1.4;
+    }
+
+    .dist-legend-amt {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      font-variant-numeric: tabular-nums;
+      width: 54px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .dist-legend-pct {
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+      width: 38px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .nonrwa-tag {
+      display: inline-block;
+      font-size: 8px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--red-bright);
+      border: 1px solid rgba(248,113,113,0.2);
+      background: var(--red-dim);
+      padding: 1px 5px;
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+
+    .rwa-tag {
+      display: inline-block;
+      font-size: 8px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 1px 5px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .rwa-tag.pure   { color: var(--green-bright); border: 1px solid rgba(34,197,94,0.2); background: var(--green-dim); }
+    .rwa-tag.mostly { color: var(--amber-bright); border: 1px solid rgba(251,191,36,0.2); background: var(--amber-dim); }
+    .rwa-tag.partial { color: var(--red-bright); border: 1px solid rgba(248,113,113,0.2); background: var(--red-dim); }
+    .rwa-tag.none   { color: var(--red-bright); border: 1px solid rgba(248,113,113,0.2); background: var(--red-dim); }
+
+    .dist-note {
+      font-size: 10px;
+      color: var(--text-tertiary);
+      margin-top: 10px;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* Attribution table */
+    .attr-table { width: 100%; border-collapse: collapse; }
+    .attr-table th {
+      font-size: 9px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--text-tertiary); padding: 7px 14px; text-align: left;
+      background: var(--bg-header); border-bottom: 1px solid var(--border-subtle);
+    }
+    .attr-table th:not(:first-child) { text-align: right; }
+    .attr-table td {
+      font-size: 12px; color: var(--text-primary); padding: 10px 14px;
+      border-bottom: 1px solid var(--border-subtle); font-variant-numeric: tabular-nums;
+    }
+    .attr-table td:not(:first-child) { text-align: right; }
+    .attr-table tr:last-child td { border-bottom: none; }
+    .attr-table tr:hover td { background: var(--bg-card-hover); }
+
+    /* Definition box */
+    .def-box {
+      background: var(--bg-row-alt);
+      border: 1px solid var(--border-subtle);
+      border-left: 2px solid var(--text-tertiary);
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .def-box strong { color: var(--text-primary); }
+
+    /* Chiliz "not RWA" panel */
+    .nonrwa-panel {
+      border: 1px solid var(--border-strong);
+      border-top: none;
+      border-left: 3px solid var(--red);
+      background: rgba(220,38,38,0.04);
+      padding: 18px 20px;
+    }
+    .nonrwa-panel-title {
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--red-bright);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .nonrwa-panel-body {
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+    .nonrwa-panel-body strong { color: var(--text-primary); }
+  </style>
+</head>
+<body>
+
+<!-- ===== SIDEBAR ===== -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-mark">Pylon Partners</div>
+    <div class="logo-name">TokenFlow</div>
+    <div class="logo-sub">RWA Intelligence Terminal</div>
+  </div>
+
+  <div class="sidebar-section">Markets</div>
+  <a href="index.html" class="nav-item">
+    <span class="nav-dot" style="background:#4a7cf0"></span> RWA Overview
+  </a>
+  <a href="analytics.html" class="nav-item">
+    <span class="nav-dot" style="background:#7c3aed"></span> Protocol Analytics
+  </a>
+  <a href="distribution.html" class="nav-item active">
+    <span class="nav-dot" style="background:#0891b2"></span> Asset Distribution
+  </a>
+
+  <div class="sidebar-section">Research</div>
+  <a href="sports.html" class="nav-item">
+    <span class="nav-dot" style="background:#be123c"></span> Sports Tokenization
+  </a>
+
+  <div class="sidebar-footer">
+    Data: <a href="https://app.rwa.xyz" target="_blank">rwa.xyz</a> · DefiLlama · Messari<br/>
+    Last updated: Apr 25, 2026
+  </div>
+</nav>
+
+<!-- ===== MAIN ===== -->
+<main class="main">
+
+  <div class="page-header">
+    <div>
+      <div class="page-title">Asset Distribution</div>
+      <div class="page-subtitle">RWA attribution by protocol — what qualifies as a real-world asset, what does not, and where the line falls</div>
+    </div>
+    <div class="data-timestamp">Data as of Apr 25, 2026</div>
+  </div>
+
+  <!-- Jump bar -->
+  <div class="jump-bar">
+    <a href="#ondo"   class="jump-link"><span style="display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--ondo);margin-right:5px;vertical-align:2px"></span>Ondo</a>
+    <a href="#maple"  class="jump-link"><span style="display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--maple);margin-right:5px;vertical-align:2px"></span>Maple</a>
+    <a href="#cfg"    class="jump-link"><span style="display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--cfg);margin-right:5px;vertical-align:2px"></span>Centrifuge</a>
+    <a href="#plume"  class="jump-link"><span style="display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--plume);margin-right:5px;vertical-align:2px"></span>Plume</a>
+    <a href="#chiliz" class="jump-link"><span style="display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--chiliz);margin-right:5px;vertical-align:2px"></span>Chiliz</a>
+  </div>
+
+  <div class="content">
+
+    <!-- RWA definition -->
+    <div class="def-box">
+      <strong>RWA definition used in this analysis:</strong> A tokenized representation of an asset with value established in the traditional financial system or physical economy — independent of the blockchain on which it is issued. Qualifying assets include government bonds, corporate bonds, CLOs, private credit to non-crypto businesses, real estate, commodities, trade receivables, and listed equities. <strong>Excluded:</strong> crypto-collateralized loans (where both borrower and collateral are digital assets), synthetic dollars backed by crypto derivatives (e.g. Ethena), and utility tokens whose "value" derives solely from platform access with no underlying asset claim — including sports fan tokens.
+    </div>
+
+    <!-- True RWA attribution table -->
+    <div class="section-header">
+      <div class="section-title">RWA Attribution by Protocol</div>
+      <div class="section-meta">Hatched segments in protocol bars = non-RWA · Red legend rows = non-RWA exposure</div>
+    </div>
+
+    <div class="table-wrap" style="margin-bottom:28px;">
+      <table class="attr-table">
+        <thead>
+          <tr>
+            <th>Protocol</th>
+            <th>Reported TVL/AUM</th>
+            <th>True RWA TVL</th>
+            <th>Non-RWA TVL</th>
+            <th>RWA %</th>
+            <th>Classification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ondo Finance</strong></td>
+            <td>$2.50B TVL</td>
+            <td class="green">$2.50B</td>
+            <td class="dimmer">—</td>
+            <td class="green">100%</td>
+            <td><span class="rwa-tag pure">Pure RWA</span></td>
+          </tr>
+          <tr>
+            <td><strong>Centrifuge</strong></td>
+            <td>$1.60B TVL</td>
+            <td class="green">$1.60B</td>
+            <td class="dimmer">—</td>
+            <td class="green">100%</td>
+            <td><span class="rwa-tag pure">Pure RWA</span></td>
+          </tr>
+          <tr>
+            <td><strong>Plume Network</strong></td>
+            <td>$645M TVL</td>
+            <td class="green"><span class="est">~$580M</span></td>
+            <td class="amber"><span class="est">~$65M</span></td>
+            <td class="amber"><span class="est">~90%</span></td>
+            <td><span class="rwa-tag mostly">Mostly RWA</span></td>
+          </tr>
+          <tr>
+            <td><strong>Maple Finance</strong></td>
+            <td>$4.00B AUM</td>
+            <td class="amber"><span class="est">~$200M</span></td>
+            <td class="red"><span class="est">~$3.80B</span></td>
+            <td class="red"><span class="est">~5%</span></td>
+            <td><span class="rwa-tag partial">Crypto Credit</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chiliz</strong></td>
+            <td>~$80M fan tokens</td>
+            <td class="dimmer">$0</td>
+            <td class="red">~$80M</td>
+            <td class="red">0%</td>
+            <td><span class="rwa-tag none">Not RWA</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- ===== ONDO ===== -->
+    <div class="dist-protocol" id="ondo">
+      <div class="protocol-section-header ondo">
+        <div>
+          <div class="ps-name">Ondo Finance <span class="rwa-tag pure">Pure RWA</span></div>
+          <div class="ps-category">Tokenized US Treasuries and Yield Instruments · Ethereum, Solana, Aptos</div>
+        </div>
+        <div class="ps-tvl">
+          <div class="ps-tvl-label">True RWA TVL</div>
+          <div class="ps-tvl-value green">$2.50B</div>
+        </div>
+      </div>
+      <div class="dist-bar-wrap">
+        <div class="dist-bar-title">Composition by product — 100% RWA ($2.50B TVL · Apr 2026)</div>
+        <div class="dist-stacked-bar">
+          <div class="dist-segment" style="flex:56; background:#2550b0;">USDY — 56%</div>
+          <div class="dist-segment" style="flex:28; background:#3b6ef0;">OUSG — 28%</div>
+          <div class="dist-segment" style="flex:16; background:#484848;">OMMF + Other — 16%</div>
+        </div>
+        <div class="dist-legend">
+          <div class="dist-legend-item">
+            <div class="dist-legend-swatch" style="background:#2550b0"></div>
+            <div class="dist-legend-name">USDY — Tokenized yield note backed by short-dated US Treasuries and bank demand deposits. Available to non-US holders only. Largest single Ondo product by TVL.</div>
+            <div class="dist-legend-amt">$1.40B</div>
+            <div class="dist-legend-pct">56%</div>
+          </div>
+          <div class="dist-legend-item">
+            <div class="dist-legend-swatch" style="background:#3b6ef0"></div>
+            <div class="dist-legend-name">OUSG — Tokenized US T-bill fund. Pass-through to BlackRock BUIDL (US T-bills, bank repo, cash equivalents). Permissioned; US qualified purchasers only.</div>
+            <div class="dist-legend-amt">$690M</div>
+            <div class="dist-legend-pct">28%</div>
+          </div>
+          <div class="dist-legend-item">
+            <div class="dist-legend-swatch" style="background:#484848"></div>
+            <div class="dist-legend-name">OMMF and emerging products — Tokenized money market fund; newer institutional rollouts via Franklin Templeton, WisdomTree, and Fidelity sub-custodied instruments.</div>
+            <div class="dist-legend-amt">$410M</div>
+            <div class="dist-legend-pct">16%</div>
+          </div>
+        </div>
+        <div class="dist-note">Every Ondo product has direct backing from traditional financial instruments. USDY is a secured note (not a fund share); OUSG is a fund wrapper. The legal distinction matters for investor classification and regulatory treatment but both qualify as RWAs. Sources: rwa.xyz, Messari; TVL approximate as of Apr 2026.</div>
+      </div>
+    </div>
+
+    <!-- ===== CENTRIFUGE ===== -->
+    <div class="dist-protocol" id="cfg">
+      <div class="protocol-section-header cfg">
+        <div>
+          <div class="ps-name">Centrifuge <span class="rwa-tag pure">Pure RWA</span></div>
+          <div class="ps-category">Asset Management Infrastructure · Ethereum, Base, Polkadot</div>
+        </div>
+        <div class="ps-tvl">
+          <div class="ps-tvl-label">True RWA TVL</div>
+          <div class="ps-tvl-value green">$1.60B</div>
+        </div>
+      </div>
+      <div class="dist-bar-wrap">
+        <div class="dist-bar-title">Composition by pool type — 100% RWA ($1.60B TVL · Apr 2026)</div>
+        <div class="dist-stacked-bar">
+          <div class="dist-segment" style="flex:63; background:#0891b2;">AAA CLOs — 63%</div>
+          <div class="dist-segment" style="flex:24; background:#3b6ef0;">Treasuries — 24%</div>
+          <div class="dist-segment" style="flex:8; background:#c2820a;">Priv. Credit — 8%</div>
+          <div class="dist-segment" style="flex:5; background:#16a34a;">Equities — 5%</div>
+        </div>
+        <div class="dist-legend">
+          <div class="dist-legend-item">
+            <div class="dist-legend-swatch" style="background:#0891b2"></div>
+            <div class="dist-legend-name">AAA CLOs (JAAA) — Janus Henderson AAA-rated CLO strategy. Received anchor allocation from Grove exceeding $1B. Collateralized loan obligations on pools of corporate loans — established TradFi instrument, unambiguously RWA.</div>
+            <div class="dist-legend-amt">$1.00B</div>
+            <div class="dist-legend-pct">63%</div>
+          </div>
+          <div class="dist-legend-item">
+            <div class="dist-legend-swatch" style="background:#3b6ef0"></div>
+            <div class="dist-legend-name">Tokenized Treasuries (JTRSY) — Janus Henderson Anemoy Treasury Fund. Short-duration US government securities wrapped as on-chain fund shares. Expanded from $200M to $380M allocation.</div>
+            <div class="dist-legend-amt">$380M</div>
+            <div class="dist-legend-pct">24%</div>
+          </div>
+          <div class="dist-legend-item">
+            <div class="dist-legend-swatch" style="background:#c2820a"></div>
+            <div class="dist-legend-name">Private Credit (ACRDX) — Apollo Diversified Credit Fund. Corporate direct lending, asset-backed lending, performing credit, and dislocated credit to real-economy borrowers. True private credit RWA.</div>
+            <div class="dist-legend-amt">$130M</div>
+            <div class="dist-legend-pct">8%</div>
+          </div>
+          <div class="dist-legend-item">
+            <div class="dist-legend-swatch" style="background:#16a34a"></div>
+            <div class="dist-legend-name">Equities and Legacy (SPXA, trade finance, real estate) — SPXA: first tokenized S&P 500 index fund on Base. Legacy: invoice receivables and New Silver real estate loans — now under 2% of TVL but the original Centrifuge thesis.</div>
+            <div class="dist-legend-amt">$90M</div>
+            <div class="dist-legend-pct">5%</div>
+          </div>
+        </div>
+        <div class="dist-note">Every pool on Centrifuge is backed by off-chain collateral with independent legal standing. The protocol itself is infrastructure; it does not set pool composition. Post-2024, Janus Henderson and Apollo partnerships displaced legacy SME pools, shifting Centrifuge from a trade-finance protocol toward institutional asset management infrastructure.</div>
+      </div>
+    </div>
+
+    <!-- ===== PLUME ===== -->
+    <div class="dist-protocol" id="plume">
+      <div class="protocol-section-header plume">
+        <div>
+          <div class="ps-name">Plume Network <span class="rwa-tag mostly">~90% RWA</span></div>
+          <div class="ps-category">RWA-Native L2 · Ethereum L2 (OP Stack) · 539K+ holders</div>
+        </div>
+        <div class="ps-tvl">
+          <div class="ps-tvl-label">True RWA TVL (est.)</div>
+          <div class="ps-tvl-value amber"><span class="est">~$580M</span></div>
+        </div>
+      </div>
+      <div class="dist-bar-wrap">
+        <div class="dist-bar-title">Estimated composition by Nest vault — hatched = non-RWA ($645M TVL · estimates only)</div>
+        <div class="dist-stacked-bar">
+          <div class="dist-segment" style="flex:40; background:#3b6ef0;">Treasuries — ~40%</div>
+          <div class="dist-segment" style="flex:35; background:#7c3aed;">Inst. Funds — ~35%</div>
+          <div class="dist-segment" style="flex:8; background:#c2820a;">Priv. Credit — ~8%</div>
+          <div class="dist-segment-nonrwa" style="flex:7; background:#d97706;">Ethena — ~7% Non-RWA</div>
+          <div class="dist-segment" style="flex:10; background:#3a3a3a;">Alt Assets — ~10%</div>
+        </div>
+        <div class="dist-legend">
+          <div class="dist-legend-item">
+            <div class="dist-legend-swatch" style="background:#3b6ef0"></div>
+            <div class="dist-legend-name">US Treasuries (Nest Treasuries vault, Ondo USDY integration, Moody's-rated T-bill products) — short-duration government securities. True RWA.</div>
+            <div class="dist-legend-amt"><span class="est">~$258M</span></div>
+            <div class="dist-legend-pct"><span class="est">~40%</span></div>
+          </div>
+          <div class="dist-legend-item">
+            <div class="dist-legend-swatch" style="background:#7c3aed"></div>
+            <div class="dist-legend-name">Institutional Funds (Nest Institutional Core: BlackRock BUIDL, Hamilton Lane; Nest RWA: Blackstone, PIMCO allocations) — all backed by off-chain assets. True RWA.</div>
+            <div class="dist-legend-amt"><span class="est">~$226M</span></div>
+            <div class="dist-legend-pct"><span class="est">~35%</span></div>
+          </div>
+          <div class="dist-legend-item">
+            <div class="dist-legend-swatch" style="background:#c2820a"></div>
+            <div class="dist-legend-name">Private Credit (Credbull SME lending pools) — loans to real-economy small businesses. True RWA.</div>
+            <div class="dist-legend-amt"><span class="est">~$52M</span></div>
+            <div class="dist-legend-pct"><span class="est">~8%</span></div>
+          </div>
+          <div class="dist-legend-item nonrwa">
+            <div class="dist-legend-swatch" style="background:#d97706"></div>
+            <div class="dist-legend-name"><strong>Ethena sUSDe and USDe (Nest High Yield)</strong> <span class="nonrwa-tag">Non-RWA</span> — Synthetic dollar backed by staked ETH and short ETH perpetual futures. No off-chain asset. Yield is generated by crypto basis trade, not a real-world instrument.</div>
+            <div class="dist-legend-amt"><span class="est">~$45M</span></div>
+            <div class="dist-legend-pct red"><span class="est">~7%</span></div>
+          </div>
+          <div class="dist-legend-item">
+            <div class="dist-legend-swatch" style="background:#3a3a3a"></div>
+            <div class="dist-legend-name">Alternative Real Assets (tokenized GPU compute, energy storage, agriculture, AI infrastructure) — physical-world assets with off-chain existence. Qualifies as RWA.</div>
+            <div class="dist-legend-amt"><span class="est">~$64M</span></div>
+            <div class="dist-legend-pct"><span class="est">~10%</span></div>
+          </div>
+        </div>
+        <div class="dist-note">Plume is an L2 aggregator; per-vault TVL is not publicly disclosed. All figures are estimated from Nest vault documentation and partner disclosures. The Ethena sUSDe exposure sits within the Nest High Yield vault alongside Credbull; the split between them is not disclosed. ~7% non-RWA estimate assumes Ethena represents the majority of that vault.</div>
+      </div>
+    </div>
+
+    <!-- ===== MAPLE ===== -->
+    <div class="dist-protocol" id="maple">
+      <div class="protocol-section-header maple">
+        <div>
+          <div class="ps-name">Maple Finance <span class="rwa-tag partial">~5% RWA</span></div>
+          <div class="ps-category">On-Chain Institutional Credit (crypto-native) · Ethereum, Solana</div>
+        </div>
+        <div class="ps-tvl">
+          <div class="ps-tvl-label">True RWA AUM (est.)</div>
+          <div class="ps-tvl-value red"><span class="est">~$200M</span></div>
+        </div>
+      </div>
+      <div class="dist-bar-wrap">
+        <div class="dist-bar-title">Composition by pool — hatched = non-RWA ($4.00B AUM · Apr 2026) — 95% of AUM is crypto-native credit</div>
+        <div class="dist-stacked-bar">
+          <div class="dist-segment-nonrwa" style="flex:63; background:#c2820a;">syrupUSDC — 63% Non-RWA</div>
+          <div class="dist-segment-nonrwa" style="flex:27; background:#8c5f08;">syrupUSDT — 27% Non-RWA</div>
+          <div class="dist-segment-nonrwa" style="flex:5; background:#4a4a4a;">BTC Secured — 5% Non-RWA</div>
+          <div class="dist-segment" style="flex:5; background:#16a34a;">T-Bills — 5% RWA</div>
+        </div>
+        <div class="dist-legend">
+          <div class="dist-legend-item nonrwa">
+            <div class="dist-legend-swatch" style="background:#c2820a"></div>
+            <div class="dist-legend-name"><strong>syrupUSDC</strong> <span class="nonrwa-tag">Non-RWA</span> — Institutional credit to crypto-native borrowers: market makers, trading firms, and exchange counterparties. Collateral is digital assets. Both borrowers and collateral exist entirely within the crypto economy. No off-chain asset exposure.</div>
+            <div class="dist-legend-amt">$2.52B</div>
+            <div class="dist-legend-pct red">63%</div>
+          </div>
+          <div class="dist-legend-item nonrwa">
+            <div class="dist-legend-swatch" style="background:#8c5f08"></div>
+            <div class="dist-legend-name"><strong>syrupUSDT</strong> <span class="nonrwa-tag">Non-RWA</span> — Same strategy as syrupUSDC; USDT-denominated. Loans to the same pool of institutional crypto counterparties. Captures 27% of AUM, reflecting Tether's dominance as institutional crypto liquidity.</div>
+            <div class="dist-legend-amt">$1.08B</div>
+            <div class="dist-legend-pct red">27%</div>
+          </div>
+          <div class="dist-legend-item nonrwa">
+            <div class="dist-legend-swatch" style="background:#4a4a4a"></div>
+            <div class="dist-legend-name"><strong>Blue-Chip Secured Lending</strong> <span class="nonrwa-tag">Non-RWA</span> — USDC loans collateralized by Bitcoin and Ethereum held by institutional borrowers. Digital asset collateral; crypto-native counterparties. Not a real-world asset.</div>
+            <div class="dist-legend-amt"><span class="est">~$200M</span></div>
+            <div class="dist-legend-pct red"><span class="est">~5%</span></div>
+          </div>
+          <div class="dist-legend-item">
+            <div class="dist-legend-swatch" style="background:#16a34a"></div>
+            <div class="dist-legend-name">Cash Management (US T-bills) — Permissioned pool investing in short-dated US government securities. This is the only Maple pool with direct exposure to a real-world asset. True RWA.</div>
+            <div class="dist-legend-amt"><span class="est">~$200M</span></div>
+            <div class="dist-legend-pct green"><span class="est">~5%</span></div>
+          </div>
+        </div>
+        <div class="dist-note">Maple's $4B AUM figure is widely cited in RWA market summaries, but 95% of it is crypto-native institutional credit. Maple is better classified as an on-chain credit protocol competing with traditional prime brokerage and institutional lending desks, not an RWA protocol. Inclusion in RWA dashboards inflates the addressable market figure. AUM breakdown sourced from Maple Finance 2025 Data Review and Messari; T-bill pool size estimated.</div>
+      </div>
+    </div>
+
+    <!-- ===== CHILIZ ===== -->
+    <div class="dist-protocol" id="chiliz">
+      <div class="protocol-section-header" style="border:1px solid var(--border-strong); border-bottom:none; border-left:3px solid var(--red);">
+        <div>
+          <div class="ps-name">Chiliz <span class="rwa-tag none">Not RWA</span></div>
+          <div class="ps-category">Sports Fan Token Infrastructure · Chiliz Chain (custom EVM)</div>
+        </div>
+        <div class="ps-tvl">
+          <div class="ps-tvl-label">True RWA TVL</div>
+          <div class="ps-tvl-value red">$0</div>
+        </div>
+      </div>
+      <div class="nonrwa-panel">
+        <div class="nonrwa-panel-title">Fan tokens do not qualify as real-world assets</div>
+        <div class="nonrwa-panel-body">
+          <strong>What fan tokens are:</strong> Utility tokens issued by Chiliz on behalf of sports clubs that grant holders governance rights over minor club decisions — jersey design polls, playlist selection for warm-ups, meet-and-greet access. They carry no equity claim, no revenue participation, no debt instrument, and no ownership interest in any real-world asset. Their market value is entirely a function of speculative demand and fan sentiment, not any underlying asset.
+          <br/><br/>
+          <strong>Why they fail the RWA test:</strong> An RWA token derives value from a claim on something that exists off-chain — a bond, a property title, a receivable, an equity stake. Fan tokens derive value from a club's brand and the willingness of fans to pay for perceived access. If the Socios platform shut down tomorrow, the token would be worthless. A tokenized T-bill would still represent a claim on the US government. That is the difference.
+          <br/><br/>
+          <strong>Why Chiliz appears in RWA coverage:</strong> "Sports tokenization" is frequently conflated with "sports RWAs" in market commentary. The conflation is inaccurate. A tokenized stadium revenue bond or tokenized athlete contract would qualify as an RWA. A fan token offering voting rights on jersey colors does not. Chiliz is a fan engagement platform, not an asset tokenization platform. The CHZ market cap ($800M) and aggregate fan token market cap (~$80M) should be removed from RWA market sizing.
+          <br/><br/>
+          <strong>The actual opportunity:</strong> The sports RWA opportunity sits in tokenized club equity, tokenized stadium debt, and tokenized broadcast rights — none of which Chiliz currently offers. The 2026 FIFA World Cup creates a window for Chiliz to pivot toward genuine asset-backed sports instruments; until that happens, the classification stays non-RWA.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <div class="footnote-bar">
+    RWA classification uses the following criteria: a qualifying RWA token must represent a legally enforceable claim on an asset with value established in the traditional financial system or physical economy, independent of the issuing blockchain. Crypto-collateralized loans, synthetic yield instruments, and fan engagement tokens are excluded. Maple T-bill pool size estimated; Plume vault breakdown not publicly disclosed; all estimates carry material uncertainty. Chiliz fan token aggregate market cap (~$80M) is distinct from CHZ infrastructure token market cap (~$800M).<br/>
+    Sources:
+    <a href="https://app.rwa.xyz" target="_blank">rwa.xyz</a>
+    <a href="https://defillama.com" target="_blank">DefiLlama</a>
+    <a href="https://messari.io" target="_blank">Messari</a>
+    <a href="https://maple.finance/insights/2025-data-review" target="_blank">Maple 2025 Data Review</a>
+    <a href="https://centrifuge.io/blog/2026-real-world-asset-tokenization" target="_blank">Centrifuge 2026 Outlook</a>
+    <a href="https://ondo.finance/ousg" target="_blank">Ondo OUSG</a>
+    <a href="https://ondo.finance/usdy" target="_blank">Ondo USDY</a>
+  </div>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TokenFlow — RWA Market Overview</title>
+  <link rel="stylesheet" href="design-system.css" />
+</head>
+<body>
+
+<!-- ===== SIDEBAR ===== -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-mark">Pylon Partners</div>
+    <div class="logo-name">TokenFlow</div>
+    <div class="logo-sub">RWA Intelligence Terminal</div>
+  </div>
+
+  <div class="sidebar-section">Markets</div>
+  <a href="index.html" class="nav-item active">
+    <span class="nav-dot" style="background:#4a7cf0"></span> RWA Overview
+  </a>
+  <a href="analytics.html" class="nav-item">
+    <span class="nav-dot" style="background:#7c3aed"></span> Protocol Analytics
+  </a>
+  <a href="distribution.html" class="nav-item">
+    <span class="nav-dot" style="background:#0891b2"></span> Asset Distribution
+  </a>
+
+  <div class="sidebar-section">Research</div>
+  <a href="sports.html" class="nav-item">
+    <span class="nav-dot" style="background:#be123c"></span> Sports Tokenization
+  </a>
+
+  <div class="sidebar-footer">
+    Data: <a href="https://app.rwa.xyz" target="_blank">rwa.xyz</a> · DefiLlama · Messari<br/>
+    Last updated: Apr 25, 2026
+  </div>
+</nav>
+
+<!-- ===== MAIN ===== -->
+<main class="main">
+
+  <div class="page-header">
+    <div>
+      <div class="page-title">RWA Market Overview</div>
+      <div class="page-subtitle">Tokenized real-world assets — market structure, protocol comparison, asset categories</div>
+    </div>
+    <div class="data-timestamp">Data as of Apr 25, 2026</div>
+  </div>
+
+  <div class="content">
+
+    <!-- Market Banner — four distinct metrics, no duplicate -->
+    <div class="market-banner">
+      <div>
+        <div class="banner-headline">Total RWA Market TVL</div>
+        <div class="banner-value">$26.4B</div>
+        <div class="banner-sub">+380% over 3 years · T-bills largest sector at $12.5B</div>
+      </div>
+      <div class="banner-stats">
+        <div>
+          <div class="banner-stat-label">YoY Growth</div>
+          <div class="banner-stat-value green">+184%</div>
+        </div>
+        <div>
+          <div class="banner-stat-label">Active Protocols</div>
+          <div class="banner-stat-value">120+</div>
+        </div>
+        <div>
+          <div class="banner-stat-label">YTD Inflows</div>
+          <div class="banner-stat-value">+$9.4B</div>
+        </div>
+        <div>
+          <div class="banner-stat-label">Largest Issuer</div>
+          <div class="banner-stat-value" style="font-size:13px; margin-top:4px">Blackrock BUIDL</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Protocol Comparison — single clean table, one row per protocol, metric type labeled -->
+    <div class="section-header">
+      <div class="section-title">Coverage Universe — Pylon Focus</div>
+      <div class="section-meta">rwa.xyz · DefiLlama · Messari · Apr 2026</div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Protocol</th>
+            <th>Category</th>
+            <th>Key Metric</th>
+            <th>Metric Type</th>
+            <th>YoY</th>
+            <th>ARR<sup class="est-marker">e</sup></th>
+            <th>Token</th>
+            <th>FDV<sup class="est-marker">e</sup></th>
+            <th>Ratio<sup class="est-marker">e</sup></th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="protocol-pill">
+                <span class="protocol-dot" style="background:var(--ondo)"></span>
+                Ondo Finance
+              </div>
+            </td>
+            <td><span class="badge badge-blue">Tokenized T-Bills</span></td>
+            <td><strong>$2.50B</strong></td>
+            <td class="dimmer">TVL</td>
+            <td class="green">+404%</td>
+            <td><span class="est">~$30M</span></td>
+            <td class="dimmer">ONDO</td>
+            <td><span class="est">~$2.6B</span></td>
+            <td class="dimmer">0.96×</td>
+            <td><span class="badge badge-green">Active</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="protocol-pill">
+                <span class="protocol-dot" style="background:var(--maple)"></span>
+                Maple Finance
+              </div>
+            </td>
+            <td><span class="badge badge-amber">Inst. Credit</span></td>
+            <td><strong>$4.00B</strong></td>
+            <td class="dimmer">AUM<sup class="est-marker">1</sup></td>
+            <td class="green">+10× in 12mo</td>
+            <td class="green">~$25M</td>
+            <td class="dimmer">SYRUP</td>
+            <td><span class="est">~$165M</span></td>
+            <td class="green">14.5×</td>
+            <td><span class="badge badge-green">Active</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="protocol-pill">
+                <span class="protocol-dot" style="background:var(--plume)"></span>
+                Plume Network
+              </div>
+            </td>
+            <td><span class="badge badge-gray">RWA L2</span></td>
+            <td><strong>$645M</strong></td>
+            <td class="dimmer">TVL</td>
+            <td class="green">+180%</td>
+            <td class="dimmer">Pre-rev.</td>
+            <td class="dimmer">PLUME</td>
+            <td><span class="est">~$1.0B</span></td>
+            <td class="dimmer">0.65×</td>
+            <td><span class="badge badge-green">Active</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="protocol-pill">
+                <span class="protocol-dot" style="background:var(--cfg)"></span>
+                Centrifuge
+              </div>
+            </td>
+            <td><span class="badge badge-blue">Asset Mgmt Infra</span></td>
+            <td><strong>$1.60B</strong></td>
+            <td class="dimmer">TVL</td>
+            <td class="green">+34%</td>
+            <td class="green">~$15M</td>
+            <td class="dimmer">CFG</td>
+            <td><span class="est">~$76M</span></td>
+            <td class="green">21.1×</td>
+            <td><span class="badge badge-green">Active</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="protocol-pill">
+                <span class="protocol-dot" style="background:var(--chiliz)"></span>
+                Chiliz
+              </div>
+            </td>
+            <td><span class="badge badge-red">Sports Fan Tokens</span></td>
+            <td><strong>~$800M</strong></td>
+            <td class="dimmer">Mkt Cap<sup class="est-marker">2</sup></td>
+            <td class="amber">Event-driven</td>
+            <td class="dimmer">Undisclosed</td>
+            <td class="dimmer">CHZ</td>
+            <td class="dimmer">~$800M</td>
+            <td class="dimmer">—</td>
+            <td><span class="badge badge-amber">Pivoting</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TVL bar chart — metric type labeled, AUM vs TVL distinguished -->
+    <div class="section-header" style="margin-top:4px">
+      <div class="section-title">TVL / AUM by Protocol</div>
+      <div class="section-meta">Note: Maple shown as AUM — not directly comparable to TVL figures</div>
+    </div>
+
+    <div class="bar-chart-wrap">
+      <div class="bar-chart-title">Indexed to Maple AUM ($4.0B = 100%)</div>
+
+      <div class="bar-row">
+        <div class="bar-label">Maple</div>
+        <div class="bar-type-tag">AUM</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:100%; background:var(--maple);">$4.0B</div>
+        </div>
+        <div class="bar-val green">$4.00B</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Ondo</div>
+        <div class="bar-type-tag">TVL</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:62.5%; background:var(--ondo);">$2.5B</div>
+        </div>
+        <div class="bar-val green">$2.50B</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Centrifuge</div>
+        <div class="bar-type-tag">TVL</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:40%; background:var(--cfg);">$1.6B</div>
+        </div>
+        <div class="bar-val">$1.60B</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Plume</div>
+        <div class="bar-type-tag">TVL</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:16.1%; background:var(--plume);">$645M</div>
+        </div>
+        <div class="bar-val">$645M</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Chiliz</div>
+        <div class="bar-type-tag">Mkt Cap</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:20%; background:var(--chiliz);">~$800M mkt cap</div>
+        </div>
+        <div class="bar-val dimmer">~$800M</div>
+      </div>
+    </div>
+
+    <!-- Asset Category Breakdown -->
+    <div class="section-header">
+      <div class="section-title">Tokenized Asset Categories — Global RWA Market</div>
+      <div class="section-meta">rwa.xyz estimates · Mar 2026 · Total $26.4B</div>
+    </div>
+
+    <div class="bar-chart-wrap">
+      <div class="bar-chart-title">By Asset Class (USD, estimated)</div>
+      <div class="bar-row">
+        <div class="bar-label">Govt / T-Bills</div>
+        <div class="bar-type-tag"></div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:100%; background:#3b6ef0;">$12.5B — Ondo, Franklin, Blackrock BUIDL</div>
+        </div>
+        <div class="bar-val green">$12.5B</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Priv. Credit</div>
+        <div class="bar-type-tag"></div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:56%; background:var(--maple);">$7.0B — Maple, Goldfinch, Centrifuge</div>
+        </div>
+        <div class="bar-val">$7.0B</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Real Estate</div>
+        <div class="bar-type-tag"></div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:20%; background:#16a34a;">$2.5B</div>
+        </div>
+        <div class="bar-val">$2.5B</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Commodities</div>
+        <div class="bar-type-tag"></div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:14.4%; background:var(--plume);">$1.8B — Gold, Carbon</div>
+        </div>
+        <div class="bar-val">$1.8B</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Other</div>
+        <div class="bar-type-tag"></div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:12%; background:#444;">$1.5B</div>
+        </div>
+        <div class="bar-val dimmer">$1.5B</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Sports / Fan</div>
+        <div class="bar-type-tag"></div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:0.64%; background:var(--chiliz);"></div>
+        </div>
+        <div class="bar-val dimmer">~$80M</div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <div class="footnote-bar">
+    <span class="fn">e</span> Estimated — not audited figures. FDV and ARR based on public data from rwa.xyz, DefiLlama, Messari, and protocol disclosures as of Apr 2026.<br/>
+    <span class="fn">1</span> Maple AUM includes committed but undeployed capital. Active loans (TVL equivalent) approximately $2.4B as of Jan 2026.<br/>
+    <span class="fn">2</span> Chiliz metric shown is CHZ market cap, not protocol TVL. Fan token on-chain TVL is not directly comparable to RWA protocol TVL.<br/>
+    Ratio = TVL / FDV (Maple uses AUM / FDV). Sources:
+    <a href="https://app.rwa.xyz" target="_blank">rwa.xyz</a>
+    <a href="https://defillama.com" target="_blank">DefiLlama</a>
+    <a href="https://messari.io" target="_blank">Messari</a>
+    <a href="https://thedefiant.io" target="_blank">The Defiant</a>
+  </div>
+
+</main>
+</body>
+</html>
