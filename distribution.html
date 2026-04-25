@@ -260,7 +260,13 @@
       <div class="page-title">Asset Distribution</div>
       <div class="page-subtitle">RWA attribution by protocol — what qualifies as a real-world asset, what does not, and where the line falls</div>
     </div>
-    <div class="data-timestamp">Data as of Apr 25, 2026</div>
+    <div class="header-actions">
+      <div class="data-timestamp" data-refresh-ts>Data as of Apr 25, 2026</div>
+      <button class="refresh-btn" title="Fetch live TVL from DefiLlama">
+        <span class="refresh-icon">↻</span>
+        <span class="refresh-label">Refresh</span>
+      </button>
+    </div>
   </div>
 
   <!-- Jump bar -->
@@ -353,7 +359,7 @@
         </div>
         <div class="ps-tvl">
           <div class="ps-tvl-label">True RWA TVL</div>
-          <div class="ps-tvl-value green">$2.50B</div>
+          <div class="ps-tvl-value green" data-tvl="ondo">$2.50B</div>
         </div>
       </div>
       <div class="dist-bar-wrap">
@@ -396,7 +402,7 @@
         </div>
         <div class="ps-tvl">
           <div class="ps-tvl-label">True RWA TVL</div>
-          <div class="ps-tvl-value green">$1.60B</div>
+          <div class="ps-tvl-value green" data-tvl="cfg">$1.60B</div>
         </div>
       </div>
       <div class="dist-bar-wrap">
@@ -585,5 +591,6 @@
   </div>
 
 </main>
+<script src="refresh.js"></script>
 </body>
 </html>

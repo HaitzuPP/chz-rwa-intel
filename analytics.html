@@ -46,7 +46,13 @@
       <div class="page-title">Protocol Analytics</div>
       <div class="page-subtitle">Deep-dive metrics: Ondo, Plume, Maple, Centrifuge — including token valuation</div>
     </div>
-    <div class="data-timestamp">Data as of Apr 25, 2026</div>
+    <div class="header-actions">
+      <div class="data-timestamp" data-refresh-ts>Data as of Apr 25, 2026</div>
+      <button class="refresh-btn" title="Fetch live TVL from DefiLlama">
+        <span class="refresh-icon">↻</span>
+        <span class="refresh-label">Refresh</span>
+      </button>
+    </div>
   </div>
 
   <!-- Within-page jump bar — replaces sidebar Protocols section -->
@@ -69,7 +75,7 @@
         </div>
         <div class="ps-tvl">
           <div class="ps-tvl-label">TVL (Jan 2026)</div>
-          <div class="ps-tvl-value" style="color:var(--ondo)">$2.50B</div>
+          <div class="ps-tvl-value" style="color:var(--ondo)" data-tvl="ondo">$2.50B</div>
         </div>
         <span class="badge badge-green">Live</span>
       </div>
@@ -246,7 +252,7 @@
         </div>
         <div class="ps-tvl">
           <div class="ps-tvl-label">TVL (Feb 2026)</div>
-          <div class="ps-tvl-value" style="color:var(--plume)">$645M</div>
+          <div class="ps-tvl-value" style="color:var(--plume)" data-tvl="plume">$645M</div>
         </div>
         <span class="badge badge-green">Mainnet</span>
       </div>
@@ -378,7 +384,7 @@
         </div>
         <div class="ps-tvl">
           <div class="ps-tvl-label">AUM (Dec 2025)</div>
-          <div class="ps-tvl-value" style="color:var(--maple)">$4.00B</div>
+          <div class="ps-tvl-value" style="color:var(--maple)" data-tvl="maple">$4.00B</div>
         </div>
         <span class="badge badge-green">Live</span>
       </div>
@@ -557,7 +563,7 @@
         </div>
         <div class="ps-tvl">
           <div class="ps-tvl-label">TVL (Apr 2026)</div>
-          <div class="ps-tvl-value" style="color:var(--cfg)">$1.60B</div>
+          <div class="ps-tvl-value" style="color:var(--cfg)" data-tvl="cfg">$1.60B</div>
         </div>
         <span class="badge badge-green">V3 Live</span>
       </div>
@@ -720,5 +726,6 @@
   </div>
 
 </main>
+<script src="refresh.js"></script>
 </body>
 </html>
