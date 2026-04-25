@@ -1,12 +1,13 @@
 // refresh.js — TokenFlow on-demand data refresh
 // Fetches live TVL from DefiLlama only when the user clicks Refresh.
-// Results are cached in localStorage so subsequent page loads cost zero API calls.
+// Results cached in localStorage with a 24h TTL so repeat page loads cost zero API calls.
 
-const CACHE_KEY = 'tokenflow_tvl_v1';
+const CACHE_KEY = 'tokenflow_tvl_v2';
+const CACHE_TTL  = 24 * 60 * 60 * 1000; // 24 hours in ms
 
 const PROTOCOLS = {
   ondo:  { slug: 'ondo-finance',  label: 'Ondo Finance', metric: 'TVL' },
-  maple: { slug: 'maple-finance', label: 'Maple Finance', metric: 'AUM' },
+  maple: { slug: 'maple-finance', label: 'Maple Finance', metric: 'Active Loans' }, // DefiLlama returns deployed loans (~$2.4B), not committed AUM ($4.0B)
   plume: { slug: 'plume',         label: 'Plume Network', metric: 'TVL' },
   cfg:   { slug: 'centrifuge',    label: 'Centrifuge',    metric: 'TVL' }
 };
@@ -20,7 +21,14 @@ function fmt(val) {
 function loadCache() {
   try {
     const raw = localStorage.getItem(CACHE_KEY);
-    return raw ? JSON.parse(raw) : null;
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    // Expire after 24h
+    if (Date.now() - parsed.ts > CACHE_TTL) {
+      localStorage.removeItem(CACHE_KEY);
+      return null;
+    }
+    return parsed;
   } catch { return null; }
 }
 
@@ -67,7 +75,7 @@ function setTimestamp(ts) {
   const str = d.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })
     + ' · ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   document.querySelectorAll('[data-refresh-ts]').forEach(el => {
-    el.textContent = 'Live · ' + str;
+    el.textContent = 'TVL Live · ' + str;
   });
 }
 
@@ -88,6 +96,10 @@ async function doRefresh(btn) {
         results[key] = await res.json(); // DefiLlama returns a bare number
       })
     );
+
+    // Note: Maple DefiLlama TVL reflects active deployed loans (~$2.4B), not committed AUM ($4.0B).
+    // The $4.0B AUM figure shown in the table is the committed/total capital figure from protocol disclosures.
+    // We display the live TVL (deployed loans) in the refresh-updated cells only.
 
     applyData(results);
     saveCache(results);
@@ -115,7 +127,7 @@ async function doRefresh(btn) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Restore cached data without any API call
+  // Restore cached data without any API call (if cache is still valid)
   const cache = loadCache();
   if (cache && cache.data) {
     applyData(cache.data);

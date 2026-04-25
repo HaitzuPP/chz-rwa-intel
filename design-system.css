@@ -676,6 +676,103 @@ th {
 .mb-20  { margin-bottom: 20px; }
 .text-right { text-align: right; }
 
+/* ============ NON-RWA INLINE FLAG ============ */
+.nonrwa-flag {
+  display: inline-block;
+  font-size: 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--red-bright);
+  border: 1px solid rgba(248,113,113,0.2);
+  background: var(--red-dim);
+  padding: 1px 5px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+/* ============ CONVICTION BOX ============ */
+.conviction-box {
+  border: 1px solid var(--border-strong);
+  border-top: none;
+  border-left-width: 3px;
+  padding: 16px 20px;
+  background: var(--bg-row-alt);
+}
+.conviction-box.accumulate { border-left-color: var(--green); }
+.conviction-box.watch       { border-left-color: var(--amber); }
+.conviction-box.pass        { border-left-color: var(--red); }
+
+.conviction-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.conviction-label {
+  font-size: 9px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-tertiary);
+}
+.conviction-signal {
+  font-size: 9px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 2px 7px;
+  border: 1px solid;
+}
+.conviction-signal.accumulate { color: var(--green-bright); background: var(--green-dim); border-color: rgba(34,197,94,0.2); }
+.conviction-signal.watch       { color: var(--amber-bright); background: var(--amber-dim); border-color: rgba(251,191,36,0.2); }
+.conviction-signal.pass        { color: var(--red-bright);   background: var(--red-dim);   border-color: rgba(248,113,113,0.2); }
+
+.conviction-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border-subtle);
+  margin-top: 10px;
+}
+.conviction-cell {
+  padding: 10px 14px;
+  border-right: 1px solid var(--border-subtle);
+  font-size: 11px;
+}
+.conviction-cell:last-child { border-right: none; }
+.conviction-cell-label {
+  font-size: 9px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+  margin-bottom: 5px;
+}
+.conviction-cell-text { color: var(--text-secondary); line-height: 1.6; }
+.conviction-cell-text strong { color: var(--text-primary); }
+
+/* ============ BACK TO TOP ============ */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 32px;
+  height: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  color: var(--text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.back-to-top:hover { color: var(--text-primary); border-color: var(--border-accent); }
+.back-to-top.visible { display: flex; }
+
 /* ============ REFRESH BUTTON ============ */
 .header-actions {
   display: flex;
